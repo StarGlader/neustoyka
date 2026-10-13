@@ -1,0 +1,367 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Неустойка — суд или соглашение</title>
+<style>
+:root{color-scheme:dark;--ink:#dce8eb;--muted:#a6bcc4;--green:#8bc9d1;--bg:#141d21;--paper:#1e2b30;--line:#3b535c;--border:#809ba5;--soft:#253f46;--red:#f0a59b;--input:#142126;--placeholder:#a6bcc4;--error-bg:#3c2825;--focus:#b2deeb;--selection:#315f6b;--selected-text:#eef8fa;--result-muted:#b7cdd3;--warning:#f2a088;--settlement:#6dd3b0;--court:#e3c071}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}::selection{background:var(--selection);color:var(--selected-text)}main{max-width:900px;margin:auto;padding:36px 28px 24px}h1{font-size:30px;line-height:1.3;letter-spacing:-.025em;margin:0 0 8px}h2{font-size:20px;margin:0 0 16px;line-height:1.3}h3{font-size:16px;margin:20px 0 8px}p{margin:8px 0}a{color:var(--green);text-underline-offset:3px}button,input{font:inherit;color:inherit}button{cursor:pointer;border:1px solid var(--border);border-radius:7px;background:var(--input);min-height:44px;padding:8px 14px}button:hover{background:var(--soft)}button:disabled{opacity:.5;cursor:default}button.link{padding:0;min-height:44px;border:0;background:none;color:var(--green);text-decoration:underline;text-underline-offset:3px;text-align:left}button.link:hover{text-decoration-thickness:2px}input{display:block;width:100%;min-width:0;height:48px;min-height:48px;line-height:24px;border:1px solid var(--border);border-radius:7px;background:var(--input);padding:9px 11px;caret-color:var(--green)}input::placeholder{color:var(--placeholder);opacity:1}input[aria-invalid=true]{border-color:var(--red);background:var(--error-bg)}input:focus-visible,button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.intro{color:var(--muted);margin-bottom:12px}.toolbar{display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-bottom:8px}.section{padding:28px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-top:24px}.fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field{min-width:0}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.hint,.small,.note{font-size:13px;color:var(--muted)}.hint{margin:5px 0 0}.penalty-line{display:flex;gap:6px 14px;align-items:baseline;flex-wrap:wrap;margin-top:18px}.penalty-line>span{min-width:0;overflow-wrap:anywhere}.penalty-line strong{font-size:22px}.penalty-line .small{margin-left:auto}#penaltyAmount{color:var(--green)}#penaltyInfo{font-size:14px;font-weight:600;color:#fff;background:#a13f20;padding:5px 9px;border-radius:2px;cursor:default;max-width:100%}#penaltyInfo:empty{display:none}.legal{margin-top:12px}.legal p{font-size:13px}.step-note{font-size:14px;color:var(--muted);margin:0 0 20px}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto;gap:20px 48px;position:relative}.choice-grid::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px solid var(--line)}.choice{min-width:0;display:grid;grid-template-rows:subgrid;grid-row:span 4;gap:16px}.choice h3{font-size:17px;font-weight:600;color:var(--green);margin:0}.choice .field label{font-size:14px}.amount-entry .link{font-size:14px}.scenario-meta{display:grid;align-items:end;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.court-recovery-help{margin-top:6px}#courtAdjusted:empty,.status:empty,.fine:empty{display:none}#courtAdjusted{color:var(--green)}.scenario-meta.settlement-meta{grid-template-columns:minmax(0,1fr)}.recovery-entry{border-top:1px solid var(--line);padding-top:20px}.inflation-summary{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}.forecast-source{margin-top:4px}.forecast-source p{font-size:13px;color:var(--muted);max-width:70ch}.settings{margin:10px 0 0;border-top:1px solid var(--line);padding-top:4px}summary{cursor:pointer;min-height:44px;padding:10px 0;font-size:14px;font-weight:600}details .fields{margin-top:10px}
+.result{padding:20px 24px;background:var(--soft);border-radius:8px}.result-title{color:var(--ink);font-weight:600;font-size:15px}.amount{display:block;font-size:32px;font-weight:700;line-height:1.3;letter-spacing:-.03em;color:var(--green);overflow-wrap:anywhere;margin:5px 0 8px}.result p{max-width:70ch}.result .small{color:var(--result-muted)}.verdict{font-size:15px;font-weight:600}.bad{color:var(--red)}.good{color:var(--green)}.error{font-size:14px;color:var(--red);margin-top:12px}.error:empty{display:none}.empty{color:var(--muted);font-size:15px}.details{margin-top:12px}.table-wrap{overflow:auto;scrollbar-color:var(--border) var(--bg)}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left;padding-left:0}th{font-weight:600}thead th{color:var(--muted)}.total{font-weight:700;color:var(--green)}.status{font-size:13px;color:var(--muted);margin-top:12px}.method{margin-top:16px}.method p,.method li{font-size:14px;max-width:76ch}.method li{margin:9px 0}.formula{padding:10px;background:var(--bg);font-size:13px;overflow-wrap:anywhere}.footer{font-size:12px;color:var(--muted);margin-top:20px}.source-list{padding-left:20px}[hidden]{display:none!important}.fine{font-size:13px;color:var(--warning)}
+.comparison-basis{margin:0 0 24px}.money-comparison{display:grid;gap:26px}.money-heading{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;justify-items:start}.money-heading strong{font-size:15px;font-weight:600}.money-value{font-size:26px;line-height:1.3;font-weight:700;letter-spacing:-.02em;color:var(--green);overflow-wrap:anywhere;max-width:100%}.money-track{height:18px;background:var(--input);margin-top:10px;overflow:hidden;border-radius:3px}.money-bar{height:100%;background:var(--border);width:0}#settleToday,#courtToday{color:var(--result-muted)}.result[data-winner=settlement] #settleToday,.result[data-winner=court] #courtToday{color:var(--settlement)}.result[data-winner=settlement] #courtToday,.result[data-winner=court] #settleToday{color:var(--court)}.result[data-winner=settlement] #settleBar,.result[data-winner=court] #courtBar{background:var(--settlement)}.result[data-winner=settlement] #courtBar,.result[data-winner=court] #settleBar{background:var(--court)}.money-row .small{margin-top:7px}.comparison-conclusion{border-bottom:1px solid var(--line);margin-bottom:24px;padding-bottom:16px}.comparison-conclusion .verdict{margin:0;font-size:26px;line-height:1.3;font-weight:700;overflow-wrap:anywhere}.comparison-conclusion .verdict.settlement-wins{color:var(--settlement)}.comparison-conclusion .verdict.court-wins{color:var(--settlement)}.comparison-conclusion .verdict.neutral{font-size:15px;font-weight:600}.comparison-conclusion #differenceNote{font-size:20px;font-weight:400;color:var(--green);margin:8px 0 0}.comparison-conclusion #differenceNote strong{font-weight:600}.comparison-conclusion #differenceNote:empty{display:none}#threshold{font-weight:600}
+@media(max-width:800px){.fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){main{padding:24px 16px}h1{font-size:27px}.section{padding:20px 16px}.choice-grid::before{display:none}.choice-grid{grid-template-columns:1fr;grid-template-rows:none;gap:24px}.choice{grid-template-rows:none;grid-row:auto;gap:16px}.choice+.choice{border-top:1px solid var(--line);padding-top:28px}.penalty-line .small{margin-left:0}.result{padding:18px 16px}.amount{font-size:29px}.fields.two{grid-template-columns:1fr}.intro{font-size:15px}.toolbar{gap:20px}}
+@media(max-width:380px){.section{padding:18px 12px}main{padding:20px 12px}.amount{font-size:27px}.fields,.scenario-meta{gap:12px}.field label,.choice .field label{font-size:13px}input{padding:9px 8px}}
+@media(prefers-color-scheme:light){:root{color-scheme:light;--ink:#20333b;--muted:#4c646e;--green:#196570;--bg:#f1f5f6;--paper:#fff;--line:#ccdce0;--border:#6d8790;--soft:#e6f1f3;--red:#9a2b24;--input:#fff;--placeholder:#586f78;--error-bg:#fff4f0;--focus:#246f9c;--selection:#c3dfe5;--selected-text:#20333b;--result-muted:#4c646e;--warning:#a13f20;--settlement:#08745e;--court:#b34322}}
+@media(prefers-color-scheme:light){.result[data-winner=settlement] #courtBar,.result[data-winner=court] #settleBar{background:#dc7044}}
+@media print{:root{color-scheme:light;--ink:#20333b;--muted:#4c646e;--green:#196570;--paper:#fff;--soft:#e6f1f3;--input:#fff;--bg:#fff;--result-muted:#4c646e;--placeholder:#586f78;--error-bg:#fff4f0;--red:#9a2b24;--warning:#a13f20;--settlement:#08745e;--court:#b34322}body{background:#fff}main{max-width:none;padding:0}.toolbar,.status,.footer,.no-print{display:none!important}.section{padding:14px;border-radius:0}.result,tr{break-inside:avoid}input{min-height:26px;padding:4px;border-color:#aaa}}
+</style></head><body><main>
+<header><h1>Суд или соглашение?</h1><p class="intro">Сравните выплаты с учётом ожидания, инфляции и оплаты юриста.</p><div class="toolbar no-print"><button class="link" id="example">Показать пример</button><button class="link" id="clear">Сбросить</button></div></header>
+<noscript><p class="error">Включите JavaScript для расчётов.</p></noscript>
+<section class="section" aria-labelledby="penaltyTitle"><h2 id="penaltyTitle">1. Неустойка за просрочку передачи</h2><div class="fields" id="contractFields"></div><div class="penalty-line"><span>Предварительный расчёт: <strong id="penaltyAmount">—</strong> <span class="small" id="penaltyShare"></span></span><span class="small" id="penaltyInfo"></span></div><details class="legal" id="legalRules"><summary>Условия расчёта</summary><p class="hint" id="legalSummary">Общее правило для гражданина: 1/150 ставки ЦБ за каждый день просрочки.</p><p><span id="rateSource">Ставка ЦБ: 14% по данным на 12.10.2026.</span> Дата применимой ставки требует проверки; поле можно изменить. Если квартира уже передана, укажите день юридически значимой передачи вместо сегодняшней даты.</p></details></section>
+<section class="section" aria-labelledby="compareTitle"><h2 id="compareTitle">2. Условия выплат</h2><p class="step-note">Введите суммы до оплаты юриста. Без суда деньги поступают сразу. Для суда укажите время ожидания выплаты. Пустой процент юриста считается нулём.</p>
+<div class="choice-grid">
+<div class="choice" role="group" aria-labelledby="courtTitle"><h3 id="courtTitle">Через суд</h3><div class="amount-entry"><div id="courtAmountField"></div><button class="link no-print" id="usePenalty" disabled>Подставить неустойку</button></div><div class="scenario-meta"><div id="courtTermField"></div><div id="courtFeeField"></div></div><div class="recovery-entry"><div id="courtRecoveryField"></div><p class="hint court-recovery-help" id="recoveryHelp">Ваша оценка возможного снижения. Пустое поле означает 100%.</p><p class="hint" id="courtAdjusted"></p></div></div>
+<div class="choice" role="group" aria-labelledby="settleTitle"><h3 id="settleTitle">Без суда</h3><div class="amount-entry"><div id="settleAmountField"></div><p class="hint" id="offerHelp">Можно не заполнять — покажем оценку выплаты через суд.</p></div><div class="scenario-meta settlement-meta"><div id="settleFeeField"></div></div></div></div>
+<p class="hint inflation-summary" id="inflationSummary"></p><details class="forecast-source" id="forecastSources"><summary>Откуда автопрогноз</summary><p><strong>До конца 2026 года — 5,2% годовых.</strong> Это середина диапазона 4,0–6,4% для IV квартала из <a href="https://www.cbr.ru/dkp/mp_dec/decision_key_rate/comment_05082026/" target="_blank" rel="noopener noreferrer">прогноза ЦБ от 05.08.2026</a>, в пересчёте на год с сезонной корректировкой.</p><p><strong>2027 год — 4,6%; 2028–2029 — 4%.</strong> Это медианные оценки участников <a href="https://www.cbr.ru/statistics/ddkp/mo_br/" target="_blank" rel="noopener noreferrer">опроса профессиональных аналитиков ЦБ за сентябрь 2026 года</a>, а не собственный прогноз ЦБ.</p><p>Калькулятор пересчитывает годовые темпы на введённый срок ожидания выплаты через суд. Это приближённая оценка роста цен по опубликованным прогнозам. При открытии калькулятор проверяет обновления. Если источник недоступен, используется последний сохранённый прогноз с указанием даты.</p></details><details class="settings" id="settings"><summary>Изменить инфляцию</summary><div class="fields two" id="sharedFields"></div><p class="hint">Пустое поле — автоматический прогноз. 0 — не учитывать инфляцию.</p></details>
+<div class="error" id="errorBox" role="alert"></div>
+</section><section class="section result-section" aria-labelledby="decisionTitle"><h2 id="decisionTitle">3. Сравнение вариантов</h2><div class="empty" id="emptyResult">Подставьте неустойку или введите сумму до снижения судом, затем укажите срок ожидания выплаты через суд.</div>
+<div id="validResult" hidden><div class="result"><div class="comparison-conclusion"><p class="verdict" id="verdict" aria-live="polite"></p><p id="differenceNote"></p></div><p class="small comparison-basis">Выплата через суд показана с поправкой на инфляцию. Оплата юриста учтена, если указан его процент.</p><div class="money-comparison"><div class="money-row"><div class="money-heading"><strong>От застройщика сейчас</strong><output id="settleToday" class="money-value">—</output></div><p class="small" id="settleCaption"></p><div class="money-track" aria-hidden="true"><div class="money-bar settlement-bar" id="settleBar"></div></div></div><div class="money-row"><div class="money-heading"><strong>Через суд — с поправкой на инфляцию</strong><output id="courtToday" class="money-value">—</output></div><p class="small" id="courtCaption"></p><div class="money-track" aria-hidden="true"><div class="money-bar" id="courtBar"></div></div></div></div></div><p class="note" id="assumptions"></p><p class="fine" id="scenarioWarnings"></p><details class="details" id="breakdown"><summary>Подробный расчёт</summary><p class="small" id="thresholdLabel">Выплата сейчас, при которой варианты равноценны</p><output id="threshold">—</output><p class="small" id="thresholdNote"></p><div class="table-wrap"><table aria-label="Сравнение выплат без учёта НДФЛ"><thead><tr><th>Что учитываем</th><th>Суд</th><th>Соглашение</th></tr></thead><tbody id="comparisonRows"></tbody></table></div><p class="small" id="inflationEffect"></p></details></div>
+<p class="status no-print" id="status" role="status"></p></section>
+<section class="method" aria-label="Методика и источники"><details id="method"><summary>Как устроен расчёт</summary>
+<h3>Неустойка</h3><p>Цена договора × ставка / 100 / 150 × начисляемые дни. День договорного срока исключается; выбранный последний день включается. Период моратория исключается автоматически. Применяется общее правило для гражданина, указанное пользователем для этого расчёта. Поддерживается начало просрочки не раньше 22.03.2024.</p>
+<p>Одна введённая ставка применяется ко всем начисляемым дням. Формулировка закона привязывает её к дню исполнения обязательства; практика применения этой даты требует отдельной проверки, калькулятор не выбирает её юридически. При незавершённой передаче и расчёте на будущую дату это сценарная оценка. Ключи, осмотр, двусторонний и односторонний акты не считаются здесь взаимозаменяемыми событиями.</p>
+<p>Окончание расчёта неустойки и ожидание денег независимы. Дополнительная неустойка за месяцы судебного ожидания автоматически не добавляется. Если передача продолжается, отдельно измените конец начисления, учитывая правовые обстоятельства.</p>
+<h3>Сравнение в сегодняшних ценах</h3><div class="formula">Стоимость сегодня = выплата × (1 − процент юриста / 100) / коэффициент роста цен.</div><p>При ручной инфляции коэффициент равен (1 + инфляция / 100)^(месяцы / 12). Для автоматического прогноза темп меняется по годам, как описано ниже.</p>
+<p>Сумму выплаты через суд до снижения задаёте вы. Затем к ней применяется процент «Сколько суд оставит»: 50 означает 50% суммы, 100 означает всю сумму. Если поле пустое, в расчёте используется 100%. Это не прогноз полной победы. Доля применяется ко всей введённой сумме суда, включая дополнительные поступления; если состав требований требует разных снижений, задайте итог вручную и оставьте долю 100%. В исходную сумму включите предполагаемую неустойку и другие подтверждённые поступления. Кнопка «Подставить неустойку» подставляет её полный расчётный размер; это не прогноз взыскания. Сравнение выполняется без учёта НДФЛ.</p>
+<h3>Порог соглашения</h3><div class="formula">Порог до оплаты юриста = стоимость суда сегодня / (1 − процент юриста по соглашению / 100).</div>
+<p>Если поле инфляции пустое, используется автоматический прогноз. Обе выплаты сравниваются в сегодняшних ценах; деньги по соглашению поступают сразу, а ожидание суда отсчитывается от сегодняшнего дня по Москве. Эти допущения показываются рядом с результатом. При этой сумме оба варианта равноценны с учётом сроков, инфляции и оплаты юриста.</p>
+<h3>Прогноз инфляции</h3><p>При открытии проверяются официальные публикации Банка России. Для оставшихся кварталов текущего года используются середины диапазонов квартального темпа инфляции в пересчёте на год с сезонной корректировкой. Для будущих лет — медианные прогнозы ИПЦ «декабрь к декабрю» из опроса профессиональных аналитиков. Источники, значения и дата успешной проверки показаны в разделе «Откуда автопрогноз». Это приближённая траектория калькулятора, а не готовый прогноз ЦБ на ваши 6–8 месяцев.</p><p>Каждая часть срока получает опубликованный темп своего квартала или годовой темп, если квартального значения в сохранённом прогнозе нет. Коэффициент роста цен равен произведению (1 + темп / 100)^(часть срока в месяцах / 12). Доли месяца считаются по календарю месяца даты сравнения; границы кварталов разделяют срок. Это сглаживание: сезонность внутри периода не предсказывается. Коэффициент применяется только к будущей выплате через суд. Годовой прогноз «декабрь к декабрю» за весь 2026 год не используется как темп оставшихся месяцев. Встроенный резервный прогноз поддерживает даты с 01.10.2026 и рост цен до начала 2030 года. Обновлённый прогноз охватывает только опубликованные периоды; вне сохранённого диапазона задайте инфляцию вручную.</p><p>Можно ввести свой постоянный годовой темп; 0 отключает обесценение. Прогноз обновляется при открытии калькулятора через сервер. При сбое используется последний сохранённый прогноз; его дата показывается рядом с инфляцией. Инфляция уменьшает покупательную стоимость будущей выплаты и не увеличивает взыскиваемую сумму автоматически.</p>
+<p>В этой модели нет дохода от вклада, экономии ипотечных процентов и вероятности взыскания. Их нельзя механически прибавлять к инфляционной поправке. Чтобы проверить другой вариант, измените сумму, долю суда или срок — результат пересчитается.</p>
+<h3>Что требуется проверить отдельно</h3><p>Право на неустойку, оплаченная и актуальная цена ДДУ, изменённый срок, юридически значимая передача и дата ставки; условия вознаграждения юриста и налоги; состав отказа от требований и обеспечение платежа по соглашению. Штраф, моральный вред и возмещение расходов автоматически не начисляются: при подтверждённом основании включите их в исходную сумму суда.</p>
+<h3>Источники и актуальность</h3><ul class="source-list">
+<li><a href="https://www.consultant.ru/document/cons_doc_LAW_51038/817620cd3c49f19912fc1ac0f98b10d17f65b75b/" target="_blank" rel="noopener noreferrer">214-ФЗ, статья 6, часть 2</a> — формула и отдельная оговорка о надлежащем исполнении застройщика и уклонении участника. Текст в справочной правовой системе.</li>
+<li><a href="https://www.consultant.ru/document/cons_doc_LAW_472727/" target="_blank" rel="noopener noreferrer">Постановление Правительства № 326, редакция от 30.12.2025</a> — исключение мораторного периода. Отсрочки исполнения проверяются отдельно и не определяют срок получения денег автоматически. Текст в справочной правовой системе.</li>
+<li><a href="https://www.cbr.ru/dkp/mp_dec/decision_key_rate/comment_05082026/" target="_blank" rel="noopener noreferrer">Комментарий ЦБ от 05.08.2026</a> — прогноз IV квартала: 4,0–6,4% в годовом выражении с сезонной корректировкой.</li>
+<li><a href="https://www.cbr.ru/press/keypr/" target="_blank" rel="noopener noreferrer">Решение Банка России от 11.09.2026</a> и <a href="https://www.cbr.ru/statistics/ddkp/mo_br/" target="_blank" rel="noopener noreferrer">сентябрьский опрос аналитиков</a> — текущая ставка и медианные прогнозы аналитиков; это разные показатели. Страницы могут обновляться.</li>
+</ul><p>Правила просмотрены 12.10.2026. Официальные оригиналы нормативных актов по порталу опубликования в этой проверке не подтверждены; использованы полные тексты СПС. Общее правило выбрано по сведениям пользователя; новой проверки проектной документации дома в этом изменении не проводилось. Полные официальные тексты найденных судебных актов о дате ставки и штрафе получить не удалось, их выводы не используются как подтверждённые. После этой даты автоматического обновления нет. Будущие периоды считаются при условии сохранения введённых правил.</p>
+</details></section>
+
+<footer class="footer">Калькулятор сравнивает суммы и сроки. Он не гарантирует получение денег и не оценивает условия соглашения.</footer></main>
+<script id="model-script">/* Standalone, deterministic financial model. UI embeds this exact file. */
+(function (root) {
+  'use strict';
+  const DAY = 86400000;
+  const LIMITS = {
+    price:[0.01,1e10],rate:[0,100],inflation:[0,100],courtShare:[0,100],
+    courtMonths:[0,120],settleMonths:[0,120],courtFee:[0,99.99],settleFee:[0,99.99],
+    courtExtra:[0,1e10],courtUpfront:[0,1e10],courtLater:[0,1e10],courtTax:[0,1e10],
+    settleGross:[0,1e10],settleUpfront:[0,1e10],settleLater:[0,1e10],settleTax:[0,1e10]
+  };
+  function numeric(value) {
+    if (typeof value === 'number') return value;
+    if (typeof value !== 'string') return NaN;
+    const clean = value.replace(/[\s\u00a0\u202f]/g,'').replace(',','.');
+    return /^\d+(?:\.\d+)?$/.test(clean) ? Number(clean) : NaN;
+  }
+  function recoveryFraction(value) {
+    const text=String(value??'').trim();
+    if(text==='')return 1;
+    const percent=text.endsWith('%');
+    const n=numeric(percent?text.slice(0,-1):text);
+    const result=percent||n>1?n/100:n;
+    if(!Number.isFinite(result)||result<0||result>1){const e=Error('Введите от 0 до 100: например, 50, 50% или 0,5 для половины суммы.');e.field='courtRecovery';throw e;}
+    return result;
+  }
+  // Built-in fallback; validated forecasts can replace these rates at runtime.
+  const FORECAST_RATES={2026:5.2,2027:4.6,2028:4,2029:4};
+  const FORECAST_QUARTERS={'2026-Q4':5.2};
+  function applyForecast(data) {
+    if(!data||data.schema!==1||!data.annualRates||!data.quarterRates)throw Error('Invalid forecast');
+    for(const [rates,pattern] of [[data.annualRates,/^20\d{2}$/],[data.quarterRates,/^20\d{2}-Q[1-4]$/]]) {
+      if(Object.keys(rates).length>20)throw Error('Invalid forecast');
+      for(const [key,value] of Object.entries(rates))if(!pattern.test(key)||typeof value!=='number'||!Number.isFinite(value)||value<0||value>100)throw Error('Invalid forecast');
+    }
+    if(!Object.keys(data.quarterRates).length||!Object.keys(data.annualRates).length)throw Error('Empty forecast');
+    for(const key of Object.keys(FORECAST_RATES))delete FORECAST_RATES[key];
+    for(const key of Object.keys(FORECAST_QUARTERS))delete FORECAST_QUARTERS[key];
+    Object.assign(FORECAST_RATES,data.annualRates);Object.assign(FORECAST_QUARTERS,data.quarterRates);
+  }
+  function forecastRateAt(base) {
+    const year=Number(base.slice(0,4)),month=Number(base.slice(5,7));
+    return FORECAST_QUARTERS[year+'-Q'+Math.ceil(month/3)]??FORECAST_RATES[year];
+  }
+  function forecastFactor(base,months) {
+    day(base);
+    if(months===0)return 1;
+    if(base<'2026-10-01'){const e=Error('Автопрогноз начинается с 01.10.2026. Для другой даты задайте инфляцию вручную.');e.field='inflation';throw e;}
+    const parts=base.split('-').map(Number);
+    let year=parts[0],month=parts[1],remaining=months,logFactor=0;
+    const monthDays=new Date(Date.UTC(year,month,0)).getUTCDate();
+    let available=3-(month-1)%3-(parts[2]-1)/monthDays;
+    while(remaining>1e-10){
+      const rate=FORECAST_QUARTERS[year+'-Q'+Math.ceil(month/3)]??FORECAST_RATES[year];
+      if(rate===undefined){const e=Error('Сохранённый прогноз не охватывает срок выплаты. Задайте инфляцию вручную.');e.field='inflation';throw e;}
+      const span=Math.min(remaining,available);
+      logFactor+=Math.log1p(rate/100)*span/12;
+      remaining-=span;month+=3-(month-1)%3;
+      if(month>12){year++;month=1;}available=3;
+    }
+    return Math.exp(logFactor);
+  }
+  function day(value) {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) throw Error('Укажите полную дату.');
+    const t=Date.parse(value+'T00:00:00Z');
+    if (!Number.isFinite(t) || new Date(t).toISOString().slice(0,10)!==value) throw Error('Проверьте дату.');
+    return t / DAY;
+  }
+  function normalize(input) {
+    const out={};
+    for (const [key,[min,max]] of Object.entries(LIMITS)) {
+      const n=numeric(input[key]);
+      if (!Number.isFinite(n) || n<min || n>max) {
+        const error=Error('Значение вне допустимого диапазона.');error.field=key;throw error;
+      }
+      out[key]=n;
+    }
+    for (const key of ['due','end','base']) {
+      try { day(input[key]); } catch(e) { e.field=key;throw e; }
+      out[key]=input[key];
+    }
+    if(day(out.due)<day('2024-03-21')) {const e=Error('Поддерживаются сроки передачи с 21.03.2024. Для более ранних периодов нужен отдельный расчёт.');e.field='due';throw e;}
+    if (day(out.end)<day(out.due)) {const e=Error('Конец расчёта должен быть не раньше срока передачи.');e.field='end';throw e;}
+    if (day(out.base)<day('2026-01-01') || day(out.base)>day('2100-01-01')) {const e=Error('Дата сравнения — с 2026 по 2100 год.');e.field='base';throw e;}
+    if (day(out.end)>day('2100-01-01')) {const e=Error('Конец расчёта — не позже 01.01.2100.');e.field='end';throw e;}
+    if(input.inflationMode==='forecast')out.inflationMode='forecast';
+    out.legalRegime=input.legalRegime||'general';
+    if(!['general','unique'].includes(out.legalRegime)){const e=Error('Выберите правило расчёта.');e.field='legalRegime';throw e;}
+    if(out.legalRegime==='unique'&&(out.due<'2025-12-31'||out.end>dateAfterMonths(out.due,30))){const e=Error('Особый режим поддерживается для начала просрочки с 2026 года и задержки до 30 месяцев. Для выбранного периода нужен отдельный правовой расчёт.');e.field='legalRegime';throw e;}
+    return out;
+  }
+  function penalty(s) {
+    // End day is included; the contractual deadline day is excluded.
+    const start=day(s.due)+1, end=day(s.end);
+    const totalDays=Math.max(0,end-start+1);
+    const paused=Math.max(0,Math.min(end,day('2025-12-31'))-Math.max(start,day('2024-03-22'))+1);
+    const chargeDays=totalDays-paused;
+    const daily=s.price*s.rate/100/(s.legalRegime==='unique'?300:150);
+    const amount=s.legalRegime==='unique'?Math.min(daily*chargeDays,s.price*.05):daily*chargeDays;
+    return {start:new Date(start*DAY).toISOString().slice(0,10),totalDays,paused,chargeDays,daily,amount};
+  }
+  function factor(rate,months) {return Math.pow(1+rate/100,months/12);}
+  function compare(s,amount,overrides={}) {
+    const share=overrides.courtShare ?? s.courtShare;
+    const months=overrides.courtMonths ?? s.courtMonths;
+    const inflation=overrides.inflation ?? s.inflation;
+    const courtGross=amount*share/100+s.courtExtra;
+    const courtLawyer=courtGross*s.courtFee/100;
+    const courtCash=courtGross-courtLawyer-s.courtLater-s.courtTax;
+    const inflationFactor=t=>s.inflationMode==='forecast'&&overrides.inflation===undefined?forecastFactor(s.base,t):factor(inflation,t);
+    const fc=inflationFactor(months),fs=inflationFactor(s.settleMonths);
+    const courtPV=courtCash/fc-s.courtUpfront;
+    const settleLawyer=s.settleGross*s.settleFee/100;
+    const settleCash=s.settleGross-settleLawyer-s.settleLater-s.settleTax;
+    const settlePV=settleCash/fs-s.settleUpfront;
+    const thresholdRaw=((courtPV+s.settleUpfront)*fs+s.settleLater+s.settleTax)/(1-s.settleFee/100);
+    const threshold=Math.max(0,thresholdRaw);
+    return {courtGross,courtLawyer,courtCash,courtPV,settleLawyer,settleCash,settlePV,
+      threshold,thresholdRaw,difference:settlePV-courtPV,courtFactor:fc,settleFactor:fs,
+      courtInflation:(fc-1)*100,settleInflation:(fs-1)*100};
+  }
+  function calculate(input) {const s=normalize(input),p=penalty(s);return {s,p,c:compare(s,p.amount)};}
+  // Calendar months for display only. Math always uses the specified month count.
+  function dateAfterMonths(base,months) {
+    const date=new Date(day(base)*DAY),whole=Math.floor(months),fraction=months-whole;
+    const target=new Date(Date.UTC(date.getUTCFullYear(),date.getUTCMonth()+whole,1));
+    const last=new Date(Date.UTC(target.getUTCFullYear(),target.getUTCMonth()+1,0)).getUTCDate();
+    target.setUTCDate(Math.min(date.getUTCDate(),last));
+    target.setUTCDate(target.getUTCDate()+Math.round(fraction*365.2425/12));
+    return target.toISOString().slice(0,10);
+  }
+  const api={LIMITS,numeric,recoveryFraction,FORECAST_RATES,FORECAST_QUARTERS,applyForecast,forecastRateAt,forecastFactor,day,normalize,penalty,factor,compare,calculate,dateAfterMonths};
+  if(typeof module!=='undefined' && module.exports) module.exports=api;
+  root.PenaltyModel=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id),M=PenaltyModel;
+const mf=new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}),cf=new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',minimumFractionDigits:2,maximumFractionDigits:2}),nf=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2});
+const money=n=>mf.format(n),pct=n=>nf.format(n)+'%',date=s=>s.split('-').reverse().join('.');
+const today=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const specs={price:['Цена квартиры, ₽','10000000'],due:['Передача до','date'],end:['Считать по','date'],rate:['Ставка ЦБ, %','Укажите ставку'],courtAmount:['Сумма до снижения, ₽','Введите сумму'],courtRecovery:['Сколько суд оставит, %','Например, 50'],settleGross:['Вам предлагают, ₽','Необязательно'],courtMonths:['Срок, мес.','Например, 8'],courtFee:['Юрист от выплаты, %','0'],settleFee:['Юрист от выплаты, %','0'],inflation:['Своя инфляция, % годовых','Авто по прогнозу']};
+const initial=Object.fromEntries(Object.keys(specs).map(k=>[k,k==='price'?'20000000':k==='rate'?'14':k==='due'?'2026-07-31':k==='end'?today():'']));
+const example={...initial,price:20000000,due:'2026-07-31',rate:14,courtAmount:'',settleGross:300000,courtMonths:8,courtFee:15,settleFee:15,inflation:'',courtRecovery:'50'};
+let last=null,penaltyReady=null,exampleLoaded=false,touched=new Set();
+function field(where,key,compact=false){const [label,ph]=specs[key],box=document.createElement('div');box.className='field';const lab=document.createElement('label');lab.htmlFor=key;lab.textContent=label;const el=document.createElement('input');el.id=key;el.name=key;el.autocomplete='off';el.spellcheck=false;
+if(ph==='date'){el.type='date';el.max='2100-01-01';el.min='2024-03-21';}else{el.type='text';el.inputMode='decimal';el.placeholder=ph;el.maxLength=24;}
+el.addEventListener('input',()=>{touched.add(key);exampleLoaded=false;$('status').textContent='';update();});box.append(lab,el);if(key==='due'||key==='end'){const hint=document.createElement('p');hint.className='hint';hint.textContent=key==='due'?'Срок по договору':'Последний день начисления';box.append(hint);}$(where).append(box);}
+for(const k of ['price','due','end','rate'])field('contractFields',k);
+const rateHint=document.createElement('p');rateHint.className='hint';rateHint.id='rateStatus';$('rate').parentElement.append(rateHint);
+for(const [where,key] of [['courtAmountField','courtAmount'],['settleAmountField','settleGross'],['courtTermField','courtMonths'],['courtFeeField','courtFee'],['settleFeeField','settleFee']])field(where,key,true);
+field('courtRecoveryField','courtRecovery');$('courtRecovery').setAttribute('aria-describedby','recoveryHelp courtAdjusted');$('settleGross').setAttribute('aria-describedby','offerHelp');
+field('sharedFields','inflation');
+
+function setValues(data){for(const k of Object.keys(specs))$(k).value=data[k]??'';touched=new Set();}
+function rawValues(){return Object.fromEntries(Object.keys(specs).map(k=>[k,$(k).value.trim()]));}
+function courtRecoveryFraction(value){const text=String(value??'').trim();if(text==='')return 1;const n=M.numeric(text.endsWith('%')?text.slice(0,-1):text);if(!Number.isFinite(n)||n<0||n>100){const e=Error('Введите процент от 0 до 100, например 50.');e.field='courtRecovery';throw e;}return n/100;}
+function modelInput(raw){const zero=k=>raw[k]===''?0:raw[k];return {legalRegime:'general',price:raw.price,due:raw.due,end:raw.end,rate:raw.rate,base:today(),inflation:zero('inflation'),inflationMode:raw.inflation===''?'forecast':'manual',courtShare:0,courtExtra:M.numeric(raw.courtAmount)*courtRecoveryFraction(raw.courtRecovery),courtMonths:raw.courtMonths,settleMonths:0,settleGross:zero('settleGross'),courtFee:zero('courtFee'),settleFee:zero('settleFee'),courtUpfront:0,settleUpfront:0,courtLater:0,settleLater:0,courtTax:0,settleTax:0};}
+function showError(key,message){key=key==='courtExtra'?'courtAmount':key;if($(key))$(key).setAttribute('aria-invalid','true');$('errorBox').textContent=(specs[key]?specs[key][0]+': ':'')+message;}
+function row(label,a,b,total=false){const tr=document.createElement('tr');if(total)tr.className='total';const th=document.createElement('th');th.scope='row';th.textContent=label;tr.append(th);for(const value of [a,b]){const td=document.createElement('td');td.textContent=value;tr.append(td);}return tr;}
+function update(){last=null;penaltyReady=null;$('usePenalty').disabled=true;$('errorBox').textContent='';$('validResult').hidden=true;$('emptyResult').hidden=false;for(const k of Object.keys(specs))$(k).removeAttribute('aria-invalid');const raw=rawValues();$('courtAdjusted').textContent='';const forecastRate=M.forecastRateAt(today());const forecastText=forecastRate===undefined?'Инфляция: задайте свой темп в настройках.':`Инфляция по прогнозу: ${pct(forecastRate)} годовых.`;$('inflation').placeholder=forecastRate===undefined?'Задайте свой темп':`Авто: ${pct(forecastRate)}`;$('inflationSummary').textContent=raw.inflation===''?forecastText:`Инфляция: ${raw.inflation}% годовых — ваше значение.`;
+const fallback={price:1,rate:0,due:'2026-01-01',end:'2026-01-01',base:today(),inflation:0,courtShare:0,courtExtra:0,courtMonths:0,settleMonths:0,settleGross:0,courtFee:0,settleFee:0,courtUpfront:0,settleUpfront:0,courtLater:0,settleLater:0,courtTax:0,settleTax:0};
+try{const input={...fallback,legalRegime:'general',...Object.fromEntries(['price','due','end','rate'].map(k=>[k,raw[k]]))};const normalized=M.normalize(input),p=M.penalty(normalized);penaltyReady=p;$('penaltyAmount').textContent=cf.format(p.amount);$('penaltyShare').textContent='('+pct(p.amount/normalized.price*100)+' от цены квартиры)';$('penaltyInfo').textContent=p.chargeDays+' дн. просрочки'+(p.paused?' · '+p.paused+' дней не начисляются':'');$('usePenalty').disabled=false;}catch(e){$('penaltyAmount').textContent='—';$('penaltyShare').textContent='';$('penaltyInfo').textContent='';if(e.field==='legalRegime'||(e.field&&touched.has(e.field)&&raw[e.field]!==''))showError(e.field,e.message);}
+let recovery;try{recovery=courtRecoveryFraction(raw.courtRecovery);}catch(e){showError(e.field,e.message);return;}
+const courtBase=M.numeric(raw.courtAmount);if(Number.isFinite(courtBase))$('courtAdjusted').textContent=`После предполагаемого снижения: ${money(courtBase*recovery)} (${pct(recovery*100)}).`;
+for(const [key,value] of Object.entries(raw)){if(value===''||specs[key][1]==='date')continue;const lim=M.LIMITS[key==='courtAmount'?'courtExtra':key];if(!lim)continue;const n=M.numeric(value);if(!Number.isFinite(n)||n<lim[0]||n>lim[1]){showError(key,`Введите число от ${nf.format(lim[0])} до ${nf.format(lim[1])}.`);return;}}
+const needed=['price','due','end','rate','courtAmount','courtMonths'];if(needed.some(k=>raw[k]==='')){$('emptyResult').textContent='Подставьте неустойку или введите сумму до снижения судом, затем укажите срок ожидания выплаты через суд.';return;}
+try{last=M.calculate(modelInput(raw));}catch(e){showError(e.field,e.message);return;}
+const {s,p,c}=last,offer=raw.settleGross!=='';last.offerEntered=offer;last.uiInputs=raw;$('validResult').hidden=false;$('emptyResult').hidden=true;
+$('threshold').textContent=money(c.threshold);$('thresholdLabel').textContent='Выплата сейчас, при которой варианты равноценны';
+$('thresholdNote').textContent=`До оплаты юриста. Получение сразу; юрист — ${pct(s.settleFee)} от выплаты.`;
+$('settleToday').textContent=offer?money(c.settlePV):'—';$('courtToday').textContent=money(c.courtPV);
+$('settleCaption').textContent=offer?'К получению сейчас, без ожидания.':'Укажите предложение застройщика в поле выше.';
+$('courtCaption').textContent=`Ожидается к получению ${s.courtMonths===0?'сразу':'через '+nf.format(s.courtMonths)+' мес.'} — ${money(c.courtCash)}.`;
+const maximum=Math.max(c.courtPV,offer?c.settlePV:0,0);$('courtBar').style.width=(maximum?Math.max(0,c.courtPV)/maximum*100:0)+'%';$('settleBar').style.width=(offer&&maximum?Math.max(0,c.settlePV)/maximum*100:0)+'%';
+const v=$('verdict');v.closest('.result').dataset.winner=!offer||Math.abs(c.difference)<.5?'none':c.difference>0?'settlement':'court';v.className='verdict';if(!offer){v.classList.add('neutral');v.textContent='Для сравнения укажите, сколько предлагает застройщик.';$('differenceNote').textContent='';}else{const diff=c.difference;if(Math.abs(diff)<.5){v.textContent='По расчёту варианты равноценны.';$('differenceNote').replaceChildren('Разница: ',Object.assign(document.createElement('strong'),{textContent:'0 ₽'}));}else{v.classList.add(diff>0?'settlement-wins':'court-wins');v.textContent=diff>0?'По расчёту выгоднее получить деньги сейчас.':'По расчёту выгоднее дождаться выплаты через суд.';$('differenceNote').replaceChildren('Разница: ',Object.assign(document.createElement('strong'),{textContent:money(Math.abs(diff))}),diff>0?' в пользу соглашения.':' в пользу суда.');}}
+$('assumptions').textContent=`На ${date(s.base)} · ${s.inflationMode==='forecast'?'инфляция по прогнозу':s.inflation===0?'инфляция не учтена':'инфляция '+pct(s.inflation)+' годовых'} · без учёта НДФЛ.${exampleLoaded?' Пример полностью вымышленный.':''}`;
+const warnings=[];if(M.day(s.end)>M.day(M.dateAfterMonths(s.base,offer?Math.min(s.courtMonths,s.settleMonths):s.courtMonths)))warnings.push('Расчёт неустойки заканчивается позже одной из выплат. Проверьте даты и сроки.');$('scenarioWarnings').textContent=warnings.join(' ');
+const om=n=>offer?money(n):'—',body=$('comparisonRows');body.replaceChildren();body.append(row('Выплата до оплаты юриста',money(c.courtGross),om(s.settleGross)),row('Оплата юриста',money(c.courtLawyer),om(c.settleLawyer)),row('После оплаты юриста',money(c.courtCash),om(c.settleCash)),row('В сегодняшних деньгах',money(c.courtPV),om(c.settlePV),true));
+$('inflationSummary').textContent=s.inflationMode==='forecast'?`${forecastText} За время ожидания выплаты через суд цены могут вырасти на ${pct(c.courtInflation)}.`:`Инфляция: ${pct(s.inflation)} годовых — ваше значение.`;
+$('inflationEffect').textContent=`В этом сценарии рост цен за ${nf.format(s.courtMonths)} мес.: ${pct(c.courtInflation)}. Суммы сравнения округлены до рубля.`;
+}
+$('usePenalty').addEventListener('click',()=>{if(!penaltyReady)return;$('courtAmount').value=penaltyReady.amount.toFixed(2);exampleLoaded=false;update();$('status').textContent='Подставлена полная неустойка. Возможное снижение задайте ниже.';});
+$('example').addEventListener('click',()=>{setValues({...example,end:today()});update();if(penaltyReady)$('courtAmount').value=penaltyReady.amount.toFixed(2);exampleLoaded=true;update();$('status').textContent='Загружен вымышленный пример.';});
+$('clear').addEventListener('click',()=>{setValues({...initial,end:today()});exampleLoaded=false;for(const id of ['settings','breakdown','method','legalRules','forecastSources'])$(id).open=false;update();$('status').textContent='Возвращены исходные значения.';});
+setValues(initial);update();
+// Persist only public forecast data, never the calculator's inputs.
+(function(){
+  const builtIn={
+  "schema": 1,
+  "checkedAt": "2026-10-12T12:00:00+03:00",
+  "annualRates": {
+    "2027": 4.6,
+    "2028": 4,
+    "2029": 4
+  },
+  "quarterRates": {
+    "2026-Q4": 5.2
+  },
+  "commentDate": "2026-08-05",
+  "commentUrl": "https://www.cbr.ru/dkp/mp_dec/decision_key_rate/comment_05082026/",
+  "surveyPeriod": "сентябрь 2026 года",
+  "surveyUrl": "https://www.cbr.ru/statistics/ddkp/mo_br/"
+};
+  const cacheKey='penalty-inflation-forecast-v1';
+  let active=builtIn,state='updating';
+  function validate(data){
+    if(!data||data.schema!==1||typeof data.checkedAt!=='string'||!Number.isFinite(Date.parse(data.checkedAt)))throw Error('Invalid forecast date');
+    M.day(data.checkedAt.slice(0,10));
+    if(Date.parse(data.checkedAt)>Date.now()+300000)throw Error('Future forecast');
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(data.commentDate)||!/^https:\/\/www\.cbr\.ru\/dkp\/mp_dec\/decision_key_rate\/comment_\d{8}\/$/.test(data.commentUrl)||data.surveyUrl!=='https://www.cbr.ru/statistics/ddkp/mo_br/'||typeof data.surveyPeriod!=='string'||data.surveyPeriod.length>80)throw Error('Invalid source');
+    M.day(data.commentDate);
+    if(data.commentDate>today()||data.commentDate>data.checkedAt.slice(0,10)||!data.commentUrl.endsWith('comment_'+data.commentDate.split('-').reverse().join('')+'/'))throw Error('Invalid source date');
+    const months='январь февраль март апрель май июнь июль август сентябрь октябрь ноябрь декабрь'.split(' ');
+    const survey=data.surveyPeriod.match(/^(\S+)\s+(20\d{2})\s+года$/);
+    if(!survey||!months.includes(survey[1])||Number(survey[2])*12+months.indexOf(survey[1])>Number(data.checkedAt.slice(0,4))*12+Number(data.checkedAt.slice(5,7))-1)throw Error('Invalid survey date');
+    const year=Number(today().slice(0,4)),quarter=Math.ceil(Number(today().slice(5,7))/3);
+    if(!data.quarterRates||!data.annualRates||(!Object.hasOwn(data.quarterRates,year+'-Q'+quarter)&&!Object.hasOwn(data.annualRates,String(year))))throw Error('Missing forecast horizon');
+    // Model validation is atomic: invalid objects never replace an active forecast.
+    for(const [rates,pattern] of [[data.annualRates,/^20\d{2}$/],[data.quarterRates,/^20\d{2}-Q[1-4]$/]]){
+      if(typeof rates!=='object'||Array.isArray(rates)||Object.keys(rates).length>20)throw Error('Invalid rates');
+      for(const [key,value] of Object.entries(rates))if(!pattern.test(key)||typeof value!=='number'||!Number.isFinite(value)||value<0||value>100)throw Error('Invalid rate');
+    }
+    return data;
+  }
+  function sourceLink(url,text){const a=document.createElement('a');a.href=url;a.textContent=text;a.target='_blank';a.rel='noopener noreferrer';return a;}
+  function render(){
+    if($('inflation').value.trim()===''){
+      const stamp=date(active.checkedAt.slice(0,10));
+      const status=state==='fresh'?`Прогноз проверен ${stamp}.`:state==='updating'?`Проверяем обновление. Сохранённый прогноз от ${stamp}.`:`Обновить не удалось. Сохранённый прогноз от ${stamp}.`;
+      $('inflationSummary').append(' '+status);
+    }
+    const paragraphs=$('forecastSources').querySelectorAll('p');
+    const quarters=Object.entries(active.quarterRates).map(([key,value])=>key.replace('-Q',' год, квартал ')+': '+pct(value)).join('; ');
+    paragraphs[0].replaceChildren(quarters+'. Это середины диапазонов темпа инфляции за квартал в пересчёте на год с сезонной корректировкой из ',sourceLink(active.commentUrl,'прогноза ЦБ от '+date(active.commentDate)),'.');
+    const years=Object.entries(active.annualRates).map(([year,value])=>year+' год: '+pct(value)).join('; ');
+    paragraphs[1].replaceChildren(years+'. Медианные оценки участников ',sourceLink(active.surveyUrl,'опроса профессиональных аналитиков ЦБ: '+active.surveyPeriod),', а не собственный прогноз ЦБ.');
+    paragraphs[2].textContent='Калькулятор пересчитывает годовые темпы на срок ожидания выплаты через суд. Это приближённая оценка роста цен. При открытии проверяются обновления; при сбое используется последний сохранённый прогноз. Последняя успешная проверка: '+date(active.checkedAt.slice(0,10))+'.';
+  }
+  const originalUpdate=update;
+  update=function(){originalUpdate();render();};
+  try{const saved=validate(JSON.parse(localStorage.getItem(cacheKey)));if(Date.parse(saved.checkedAt)>=Date.parse(active.checkedAt))active=saved;}catch{}
+  try{M.applyForecast(validate(active));}catch{active=builtIn;}
+  update();
+  async function refresh(){
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+    try{
+      if(!/^https?:$/.test(location.protocol))throw Error('Server required');
+      const response=await fetch('https://neustoyka.starfinder1369229.chatgpt.site/api/inflation-forecast',{cache:'no-store',signal:controller.signal});
+      if(!response.ok)throw Error('Forecast unavailable');
+      const result=await response.json(),next=validate(result.forecast);
+      if(Date.parse(next.checkedAt)>=Date.parse(active.checkedAt)){
+        M.applyForecast(next);active=next;
+        try{localStorage.setItem(cacheKey,JSON.stringify(active));}catch{}
+      }
+      state=result.fresh===true?'fresh':'saved';
+    }catch{state='saved';}
+    finally{clearTimeout(timeout);update();}
+  }
+  refresh();
+})();
+
+// Cache only the public CBR rate. A manual edit always wins over a pending request.
+(function(){
+  const builtIn={
+  "schema": 1,
+  "value": 14,
+  "rateDate": "2026-10-12",
+  "checkedAt": "2026-10-12T12:00:00+03:00",
+  "sourceUrl": "https://www.cbr.ru/hd_base/KeyRate/"
+};
+  const cacheKey='penalty-key-rate-v1';
+  let active=builtIn,state='updating';
+  function validate(data){
+    if(!data||data.schema!==1||typeof data.value!=='number'||!Number.isFinite(data.value)||data.value<0||data.value>100||data.sourceUrl!=='https://www.cbr.ru/hd_base/KeyRate/')throw Error('Invalid key rate');
+    if(typeof data.rateDate!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(data.rateDate))throw Error('Invalid rate date');
+    M.day(data.rateDate);
+    if(data.rateDate>today()||typeof data.checkedAt!=='string'||!Number.isFinite(Date.parse(data.checkedAt))||Date.parse(data.checkedAt)>Date.now()+300000||data.checkedAt.slice(0,10)<data.rateDate)throw Error('Invalid observation date');
+    M.day(data.checkedAt.slice(0,10));
+    return data;
+  }
+  function newer(a,b){return a.rateDate>b.rateDate||(a.rateDate===b.rateDate&&Date.parse(a.checkedAt)>=Date.parse(b.checkedAt));}
+  function render(){
+    const source=`ЦБ: ${pct(active.value)} на ${date(active.rateDate)}.`;
+    const manual=M.numeric($('rate').value)!==active.value?'Своя ставка. ':'';
+    $('rateStatus').textContent=manual+(state==='fresh'?source:state==='updating'?source+' Проверяем обновление.':'Обновить не удалось. Сохранённая ставка '+pct(active.value)+' на '+date(active.rateDate)+'.');
+    $('rateSource').textContent=source+' Проверено '+date(active.checkedAt.slice(0,10))+'.';
+  }
+  function apply(){
+    initial.rate=String(active.value);example.rate=active.value;
+    if(!touched.has('rate')){
+      $('rate').value=String(active.value);
+      if(exampleLoaded){update();if(penaltyReady)$('courtAmount').value=penaltyReady.amount.toFixed(2);}
+    }
+    update();
+  }
+  const originalUpdate=update;
+  update=function(){originalUpdate();render();};
+  try{const saved=validate(JSON.parse(localStorage.getItem(cacheKey)));if(newer(saved,active))active=saved;}catch{}
+  apply();
+  async function refresh(){
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);
+    try{
+      if(!/^https?:$/.test(location.protocol))throw Error('Server required');
+      const response=await fetch('https://neustoyka.starfinder1369229.chatgpt.site/api/key-rate',{cache:'no-store',signal:controller.signal});
+      if(!response.ok)throw Error('Rate unavailable');
+      const result=await response.json(),next=validate(result.rate);
+      if(newer(next,active)){
+        active=next;
+        try{localStorage.setItem(cacheKey,JSON.stringify(active));}catch{}
+      }
+      state=result.fresh===true?'fresh':'saved';apply();
+    }catch{state='saved';update();}
+    finally{clearTimeout(timeout);}
+  }
+  refresh();
+})();
+
+
+</script></body></html>
