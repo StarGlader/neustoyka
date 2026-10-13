@@ -187,8 +187,8 @@ const mf=new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumF
 const money=n=>mf.format(n),pct=n=>nf.format(n)+'%',date=s=>s.split('-').reverse().join('.');
 const today=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const specs={price:['Цена квартиры, ₽','10000000'],due:['Передача до','date'],end:['Считать по','date'],rate:['Ставка ЦБ, %','Укажите ставку'],courtAmount:['Сумма до снижения, ₽','Введите сумму'],courtRecovery:['Сколько суд оставит, %','Например, 50'],settleGross:['Вам предлагают, ₽','Необязательно'],courtMonths:['Срок, мес.','Например, 8'],courtFee:['Юрист от выплаты, %','0'],settleFee:['Юрист от выплаты, %','0'],inflation:['Своя инфляция, % годовых','Авто по прогнозу']};
-const initial=Object.fromEntries(Object.keys(specs).map(k=>[k,k==='price'?'20000000':k==='rate'?'14':k==='due'?'2026-07-31':k==='end'?today():'']));
-const example={...initial,price:20000000,due:'2026-07-31',rate:14,courtAmount:'',settleGross:300000,courtMonths:8,courtFee:15,settleFee:15,inflation:'',courtRecovery:'50'};
+const initial=Object.fromEntries(Object.keys(specs).map(k=>[k,k==='price'?'20000000':k==='rate'?'14':k==='due'?'2026-07-31':k==='end'?today():(k==='courtFee'||k==='settleFee')?'20':'']));
+const example={...initial,price:20000000,due:'2026-07-31',rate:14,courtAmount:'',settleGross:300000,courtMonths:8,courtFee:20,settleFee:20,inflation:'',courtRecovery:'50'};
 let last=null,penaltyReady=null,exampleLoaded=false,touched=new Set();
 function field(where,key,compact=false){const [label,ph]=specs[key],box=document.createElement('div');box.className='field';const lab=document.createElement('label');lab.htmlFor=key;lab.textContent=label;const el=document.createElement('input');el.id=key;el.name=key;el.autocomplete='off';el.spellcheck=false;
 if(ph==='date'){el.type='date';el.max='2100-01-01';el.min='2024-03-21';}else{el.type='text';el.inputMode='decimal';el.placeholder=ph;el.maxLength=24;}
